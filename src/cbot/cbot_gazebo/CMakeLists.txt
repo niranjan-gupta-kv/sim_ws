@@ -11,14 +11,14 @@ find_package(catkin REQUIRED COMPONENTS
   gazebo_plugins
   gazebo_ros
   gazebo_ros_control
-  kinova_control
-  kinova_description
+  cbot_control
+  cbot_description
   xacro
   roslaunch
 )
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+ find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -109,7 +109,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES cbot_gazebo
-#  CATKIN_DEPENDS gazebo_plugins gazebo_ros gazebo_ros_control kinova_control kinova_description xacro
+#  CATKIN_DEPENDS gazebo_plugins gazebo_ros gazebo_ros_control cbot_control cbot_description xacro
 #  DEPENDS system_lib
 )
 

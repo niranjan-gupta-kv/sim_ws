@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(cbot_gazebo)
+project(cbot_teleoperator)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,17 +8,51 @@ project(cbot_gazebo)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  gazebo_plugins
-  gazebo_ros
-  gazebo_ros_control
-  cbot_control
-  cbot_description
-  xacro
-  roslaunch
+  actionlib_msgs
+  cbot_msgs
+  geometry_msgs
+  sensor_msgs
+  teleop_twist_keyboard
+)
+
+
+catkin_package(
+  INCLUDE_DIRS
+    include
+  ##LIBRARIES
+  ##  joy_teleop
+)
+
+include_directories(
+    include
+    ${catkin_INCLUDE_DIRS}
+)
+##for joystick control
+##add_library(volta_joy_teleop src/joy_teleop.cpp)
+##add_executable(volta_joy_teleop_node src/joy_teleop_node.cpp)
+##target_link_libraries(volta_joy_teleop_node volta_joy_teleop ${catkin_LIBRARIES})
+
+
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  PATTERN ".svn" EXCLUDE
+)
+
+install(TARGETS
+##        volta_joy_teleop
+##        volta_joy_teleop_node
+        ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+        LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+        RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(
+  DIRECTORY config launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
 ## System dependencies are found with CMake's conventions
- find_package(Boost REQUIRED COMPONENTS system)
+# find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -74,7 +108,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
+#   actionlib_msgs#   cbot_msgs#   geometry_msgs#   sensor_msgs
 # )
 
 ################################################
@@ -108,11 +142,10 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES cbot_gazebo
-#  CATKIN_DEPENDS gazebo_plugins gazebo_ros gazebo_ros_control cbot_control cbot_description xacro
+#  LIBRARIES cbot_teleoperator
+#  CATKIN_DEPENDS actionlib_msgs cbot_msgs geometry_msgs sensor_msgs teleop_twist_joy teleop_twist_keyboard
 #  DEPENDS system_lib
 )
-
 
 ###########
 ## Build ##
@@ -125,23 +158,9 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-
-find_package(gazebo REQUIRED)
-include_directories(${GAZEBO_INCLUDE_DIRS})
-link_directories(${GAZEBO_LIBRARY_DIRS})
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
-
-add_library(ActorCollisionsPlugin SHARED plugin/ActorCollisionsPlugin.cc)
-target_link_libraries(ActorCollisionsPlugin ${GAZEBO_LIBRARIES})
-
-
-install(
-  DIRECTORY launch worlds plugin models
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/cbot_gazebo.cpp
+#   src/${PROJECT_NAME}/cbot_teleoperator.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -152,7 +171,7 @@ install(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/cbot_gazebo_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/cbot_teleoperator_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -216,7 +235,7 @@ install(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_cbot_gazebo.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_cbot_teleoperator.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

@@ -7,9 +7,9 @@
 	<param name="use_gui" value="$(arg gui)"/>
 
 	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-		<param name="zeros/j2n7s300_joint_2" value="3.1415"/>
-		<param name="zeros/j2n7s300_joint_3" value="3.1415"/>
-	  <param name="zeros/j2n7s300_joint_4" value="3.1415"/> 
+		<param name="zeros/j2s7s300_joint_2" value="3.1415"/>
+		<param name="zeros/j2s7s300_joint_3" value="3.1415"/>
+	  <param name="zeros/j2s7s300_joint_4" value="3.1415"/> 
 	</node>
 	
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find cbot_description)/rviz/urdf.rviz" respawn="true"/>

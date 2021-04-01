@@ -10,7 +10,6 @@ project(cbot_control)
 find_package(catkin REQUIRED COMPONENTS
   controller_manager
   diff_drive_controller
-  effort_controllers
   joint_state_controller
   robot_state_publisher
   rqt_gui

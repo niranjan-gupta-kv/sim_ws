@@ -4,4 +4,8 @@
 /devel
 /logs
 /.vscode
+/src/.vscode
+/src/kinova-ros
+/src/volta
+/src/volta_simulation
 

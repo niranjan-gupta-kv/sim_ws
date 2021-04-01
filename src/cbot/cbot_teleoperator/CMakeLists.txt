@@ -12,7 +12,6 @@ find_package(catkin REQUIRED COMPONENTS
   cbot_msgs
   geometry_msgs
   sensor_msgs
-  teleop_twist_joy
   teleop_twist_keyboard
 )
 

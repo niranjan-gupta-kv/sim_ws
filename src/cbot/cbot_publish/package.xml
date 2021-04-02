@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>cbot_teleoperator</name>
+  <name>cbot_publish</name>
   <version>0.0.0</version>
-  <description>The cbot_teleoperator package</description>
+  <description>The cbot_publish package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
@@ -19,7 +19,7 @@
   <!-- Url tags are optional, but multiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/cbot_teleoperator</url> -->
+  <!-- <url type="website">http://wiki.ros.org/cbot_publish</url> -->
 
 
   <!-- Author tags are optional, multiple are allowed, one per tag -->
@@ -49,25 +49,9 @@
   <!-- Use doc_depend for packages you need only for building documentation: -->
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>actionlib_msgs</build_depend>
-  <build_depend>cbot_msgs</build_depend>
-  <build_depend>geometry_msgs</build_depend>
-  <build_depend>sensor_msgs</build_depend>
-  <build_depend>teleop_twist_joy</build_depend>
-  <build_depend>teleop_twist_keyboard</build_depend>
-  <build_export_depend>actionlib_msgs</build_export_depend>
-  <build_export_depend>cbot_msgs</build_export_depend>
-  <build_export_depend>geometry_msgs</build_export_depend>
-  <build_export_depend>sensor_msgs</build_export_depend>
-  <build_export_depend>teleop_twist_joy</build_export_depend>
-  <build_export_depend>teleop_twist_keyboard</build_export_depend>
-  <exec_depend>actionlib_msgs</exec_depend>
-  <exec_depend>cbot_msgs</exec_depend>
-  <exec_depend>geometry_msgs</exec_depend>
-  <exec_depend>sensor_msgs</exec_depend>
-  <exec_depend>teleop_twist_joy</exec_depend>
-  <exec_depend>teleop_twist_keyboard</exec_depend>
-  <exec_depend>hector_gazebo_plugins</exec_depend>
+  <build_depend>rospy</build_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <exec_depend>rospy</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

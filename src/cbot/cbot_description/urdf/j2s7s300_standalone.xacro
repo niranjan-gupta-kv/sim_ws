@@ -19,17 +19,34 @@ xmlns:xi="http://www.w3.org/2001/XInclude"
   <xacro:include filename="$(find cbot_description)/urdf/volta.urdf.xacro" />
   <xacro:include filename="$(find cbot_description)/urdf/j2s7s300.xacro"/>
 
+<link name="dummy_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.05"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.1" radius="0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
 
   <!-- for gazebo -->
-  <link name="ground"/>
-  
-  <joint name="connect_base_and_ground" type="fixed">
-    <child link="base_link" />
-    <parent link="ground" />  
+
+  <joint name="connect_base_and_dummy" type="fixed">
+    <child link="dummy_link" />
+    <parent link="base_link" />
+    <origin xyz="0 0 0.251" rpy="0.0 0.0 0" />  
   </joint> 
 
   <xacro:volta_robot/>
-  <xacro:property name="robot_root" value="base_link" />
+  <xacro:property name="robot_root" value="dummy_link" />
 
   <xacro:j2s7s300  base_parent="${robot_root}"/>
 
